@@ -18,13 +18,14 @@ class Carousel extends Component<ICarouselProps, ICarouselState> {
   };
 
   handleIndexClick = (event: MouseEvent<HTMLElement>): void => {
-    const target = event.target as HTMLElement;
-    if (!target || !target.dataset || !target.dataset.index) {
+    if (!(event.target instanceof HTMLElement)) {
       return;
     }
-    this.setState({
-      active: +target.dataset.index,
-    });
+    if (event.target.dataset.index) {
+      this.setState({
+        active: +event.target.dataset.index,
+      });
+    }
   };
 
   render(): ReactNode {
